@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>YODA website</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="e157f0faa3d013ba7c0b49ed-text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="e157f0faa3d013ba7c0b49ed-text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js" type="e157f0faa3d013ba7c0b49ed-text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js" type="e157f0faa3d013ba7c0b49ed-text/javascript"></script>
+    <script src="https://unpkg.com/image-compare-viewer/dist/image-compare-viewer.min.js" type="e157f0faa3d013ba7c0b49ed-text/javascript"></script>
+  </head>
+  <body>
+    <div class="container" id="main">
+      <div class="row">
+        <h1 class="col-md-12 text-center">
+          <b>Efficient Video Prediction via Sparsely Conditioned Flow Matching</br>
+          <small>
+            <a href="https://araachie.github.io">Aram Davtyan</a>, <a href="https://cvg.unibe.ch/people/sameni">Sepehr Sameni</a> and <a href="https://cvg.unibe.ch/people/favaro">Paolo Favaro</a>
+          </small>
+          <br>
+          <small>
+            University of Bern, Bern, Switzerland
+          </small>
+        </h1>
+      </div>
+    </div>  
+
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 2rem;">
+      <div>
+        <div class="col-md-6 text-center">
+          <h2>
+            <a href="https://www.github.com/araachie/river">[GitHub]</a>
+          </h2>
+        </div>
+        <div class="col-md-6 text-center">
+          <h2>
+            <a href="https://arxiv.org/abs/2211.14575">[Arxiv]</a>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2" style="padding-top: 2rem;">
+      <div>
+        <h2>Abstract<br>
+          <small>
+            We introduce a novel generative model for video prediction based on latent flow matching, an efficient alternative to diffusion-based models. In contrast to prior work, we keep the high costs of modeling the past during training and inference at bay by conditioning only on a small random set of past frames at each integration step of the image generation process. Moreover, to enable the generation of high-resolution videos and to speed up the training, we work in the latent space of a pretrained VQGAN. Furthermore, we propose to approximate the initial condition of the flow ODE with the previous noisy frame. This allows to reduce the number of integration steps and hence, speed up the sampling at inference time. We call our model Random frame conditioned flow Integration for VidEo pRediction, or, in short, RIVER. We show that RIVER achieves superior or on par performance compared to prior work on common video prediction benchmarks, while requiring an order of magnitude fewer computational resources.
+          </small>
+        </h2>
+      </div>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2" style="padding-top: 2rem;">
+      <div>
+        <h2>Results</h2>
+        <h3>Coming soon...</h3>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>
+        Acknowledgements
+        </h3>
+        <p class="text-justify">
+        The website template was borrowed from <a href="https://kfmei.page/vidm/">VIDM</a>.
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
