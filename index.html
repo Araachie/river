@@ -3,7 +3,7 @@
   <head lang="en">
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RIVER website</title>
+    <title>Efficient Video Prediction via Sparsely Conditioned Flow Matching</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -20,13 +20,17 @@
     <div class="container" id="main">
       <div class="row">
         <h1 class="col-md-12 text-center">
-          <b>Efficient Video Prediction via Sparsely Conditioned Flow Matching</br>
+          <b>Efficient Video Prediction via Sparsely Conditioned Flow Matching (a.k.a. RIVER) </br>
           <small>
             <a href="https://araachie.github.io">Aram Davtyan</a>, <a href="https://cvg.unibe.ch/people/sameni">Sepehr Sameni</a> and <a href="https://cvg.unibe.ch/people/favaro">Paolo Favaro</a>
           </small>
           <br>
           <small>
             Computer Vision Group, Institute of Informatics, University of Bern, Bern, Switzerland
+          </small>
+          <br>
+          <small>
+            at ICCV 2023
           </small>
         </h1>
       </div>
@@ -47,25 +51,120 @@
       </div>
     </div>
 
-    <div class="col-md-8 col-md-offset-2" style="padding-top: 2rem;">
+    <div class="col-md-6 text-left col-md-offset-3" style="padding-top: 2rem;">
       <div>
         <h2>Abstract<br>
-          <small>
-            We introduce a novel generative model for video prediction based on latent flow matching, an efficient alternative to diffusion-based models. In contrast to prior work, we keep the high costs of modeling the past during training and inference at bay by conditioning only on a small random set of past frames at each integration step of the image generation process. Moreover, to enable the generation of high-resolution videos and to speed up the training, we work in the latent space of a pretrained VQGAN. Furthermore, we propose to approximate the initial condition of the flow ODE with the previous noisy frame. This allows to reduce the number of integration steps and hence, speed up the sampling at inference time. We call our model Random frame conditioned flow Integration for VidEo pRediction, or, in short, RIVER. We show that RIVER achieves superior or on par performance compared to prior work on common video prediction benchmarks, while requiring an order of magnitude fewer computational resources.
-          </small>
-        </h2>
+            <small>
+              We introduce a novel generative model for video prediction based on latent flow matching, an efficient alternative to diffusion-based models. In contrast to prior work, we keep the high costs of modeling the past during training and inference at bay by conditioning only on a small random set of past frames at each integration step of the image generation process. Moreover, to enable the generation of high-resolution videos and to speed up the training, we work in the latent space of a pretrained VQGAN. Furthermore, we propose to approximate the initial condition of the flow ODE with the previous noisy frame. This allows to reduce the number of integration steps and hence, speed up the sampling at inference time. We call our model Random frame conditioned flow Integration for VidEo pRediction, or, in short, RIVER. We show that RIVER achieves superior or on par performance compared to prior work on common video prediction benchmarks, while requiring an order of magnitude fewer computational resources.
+            </small>
+          </h2>
       </div>
     </div>
 
-    <div class="col-md-8 col-md-offset-2" style="padding-top: 2rem;">
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 2rem;">
       <div>
-        <h2>Results<br>
-        <small>Coming soon...</small>
-        </h2>
+        <div class="col-md-7 text-left">
+          <img src="media/RIVER_v4.png" width="100%" alt="" float="left">
+          <br>
+          <h2><small>
+          The inference pipeline of our model. In order to generate the next frame (top-right), we sample an initial estimate from the standard normal distribution (bottom-left) and integrate the flow ODE by querying our model at each step with a random conditioning frame from the past and the previous frame (top). We omitted the encoding/decoding for simplicity.
+          </small><h2>
+        </div>
+        <div class="col-md-5 text-left">
+          <img src="media/tradeoff.png" width="89%" alt="" float="left">
+          <br>
+          <h2><small>
+          RIVER achieves an ideal trade-off between quality of generated videos (measured via FVD) and compute needed to train the model (measured as the product of memory and training time). This makes research on video models more easily scalable.
+          </small></h2>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-8 col-md-offset-2" style="padding-top: 2rem;">
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 2rem;">
+      <div>
+        <h2>Results</h2>
+        <h3>
+          Video Prediction on BAIR 256 (5 frames from 1 context frame)<br>
+          <small>Notice the ability of RIVER to generate high-resolution videos. This is due to the fact that RIVER works in the latent space of VQGAN.</small>
+        </h3>
+
+        <div class="col-md-3 text-center">
+          <img src="media/bair/bair_1.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-3 text-center">
+          <img src="media/bair/bair_2.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-3 text-center">
+          <img src="media/bair/bair_3.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-3 text-center">
+          <img src="media/bair/bair_4.gif" width="100%" alt="" float="left">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 2rem;">
+      <div>
+        <h3>Video Prediction on KTH (25 frames from 5 context frames)<br>
+          <small>Green border indicetes the ground truth context frames, while red border marks the start of the generation.</small></h3>
+        <div class="col-md-2 text-center">
+          <img src="media/kth/kth_1.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-2 text-center">
+          <img src="media/kth/kth_2.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-2 text-center">
+          <img src="media/kth/kth_3.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-2 text-center">
+          <img src="media/kth/kth_4.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-2 text-center">
+          <img src="media/kth/kth_5.gif" width="100%" alt="" float="left">
+        </div>
+        <div class="col-md-2 text-center">
+          <img src="media/kth/kth_6.gif" width="100%" alt="" float="left">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h3>Long Video (128 frames) Generation Results on CLEVRER<br>
+        <small>
+          Even though we can't quantitatively compare our generation results with other methods (due to the mismatch in spatial and temporal resolution of the data the models were trained on),
+          we can clearly see that the dynamics and interactions of the objects are captured better by our model. Note that VIDM is the SotA generative model on CLEVRER.
+        </small>
+        </h3>
+      </div>
+      <div class="col-md-6 col-md-offset-3" style="padding-top: 2rem;">
+      <div>
+        <div class="col-md-12 text-center">
+          <span>DIGAN</span>
+          <video src="media/clevrer/digan.mp4" autoplay="autoplay" loop="" muted="muted" width="100%"></video>
+        </div>
+        <br>
+        <div class="col-md-12 text-center">
+          <span>StyleGAN-V</span>
+          <video src="media/clevrer/stylegan-v.mp4" autoplay="autoplay" loop="" muted="muted" width="100%"></video>
+        </div>
+        <br>
+        <div class="col-md-12 text-center">
+          <span>VIDM</span>
+          <video src="media/clevrer/vidm.mp4" autoplay="autoplay" loop="" muted="muted" width="100%"></video>
+        </div>
+        <div class="col-md-12 text-center">
+          <span>RIVER (ours)</span>
+          <video src="media/clevrer/river.mp4" autoplay="autoplay" loop="" muted="muted" width="100%"></video>
+        </div>
+        <div class="col-md-12 text-center">
+          <span>RIVER (ours) - slowed down by 4 times</span>
+          <video src="media/clevrer/river_8fps.mp4" autoplay="autoplay" loop="" muted="muted" width="100%"></video>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 2rem;">
       <div>
         <h3>
         Acknowledgements
