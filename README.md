@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-	Efficient Video Prediction via Sparsely Conditioned Flow Matching
+	[ICCV 2023] Efficient Video Prediction via Sparsely Conditioned Flow Matching
   <br>
 </h1>
   <p align="center">
@@ -15,15 +15,15 @@
 <h4 align="center"><a href="https://araachie.github.io/river/">Project Website</a> • <a href="https://arxiv.org/abs/2211.14575">Arxiv</a>
 
 #
-> **Abstract:** *We introduce a novel generative model for
-> video prediction based on latent flow matching, an efficient
-> alternative to diffusion-based models. In contrast to prior work,
+> **Abstract:** *We introduce a novel generative model for video
+> prediction based on latent flow matching, an efficient alternative
+> to diffusion-based models. In contrast to prior work,
 > we keep the high costs of modeling the past during training
 > and inference at bay by conditioning only on a small random
 > set of past frames at each integration step of the image
 > generation process. Moreover, to enable the generation
 > of high-resolution videos and to speed up the training, we
-> work in the latent space of a pretrained VQGAN. Furthermore,
+> work in the latent space of a pretrained VQGAN. Finally,
 > we propose to approximate the initial condition of the
 > flow ODE with the previous noisy frame. This allows to reduce
 > the number of integration steps and hence, speed up
@@ -36,10 +36,14 @@
 
 ## Citation
 
-The paper is to appear in the Proceedings of the International Conference on Computer Vision in 2023. 
-In the meantime we suggest using the arxiv preprint bibref.
-
-A. Davtyan, S. Sameni, P. Favaro. Efficient Video Prediction via Sparsely Conditioned Flow Matching. Technical Report, 2023.
+	@InProceedings{Davtyan_2023_ICCV,
+	    author    = {Davtyan, Aram and Sameni, Sepehr and Favaro, Paolo},
+	    title     = {Efficient Video Prediction via Sparsely Conditioned Flow Matching},
+	    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+	    month     = {October},
+	    year      = {2023},
+	    pages     = {23263-23274}
+	}
   
 ## Code
   
