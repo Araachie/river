@@ -1,8 +1,9 @@
 <h1 align="center">
   <br>
-	Efficient Video Prediction via Sparsely Conditioned Flow Matching
+	<b>RIVER:</b> Efficient Video Prediction via Sparsely
   <br>
-    (a.k.a. RIVER)
+	Conditioned Flow Matching
+  <br>
 </h1>
   <p align="center">
     <a href="https://araachie.github.io">Aram Davtyan</a> •
