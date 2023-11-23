@@ -1,0 +1,82 @@
+# Experiment name
+name: "bair_64"
+
+# Dataset parameters
+data:
+  data_root: "/data/cvg/aram/hdf5/ours/BAIR_256_h5"
+  input_size: 64
+  crop_size: 64
+  frames_per_sample: 16
+  skip_frames: 0
+  random_horizontal_flip: False
+  aug: False
+  albumentations: True
+
+# Parameters of the model
+model:
+  # Defines the sigma min
+  sigma: 0.0000001
+
+  # Parameters for vector field regressor
+  vector_field_regressor:
+    state_size: 4
+    state_res: [8, 8]
+    inner_dim: 768
+    depth: 4
+    mid_depth: 5
+    out_norm: "ln"
+
+  # Parameters for the autoencoder
+  autoencoder:
+    # The architecture of the autoencoder [ours, ldm-vq, ldm-kl]
+    type: "ldm-vq"
+    config: "f8_small"
+    ckpt_path: "/home/ad20n980/research/learning_object_interactions/SLON/vqgan_checkpoints/bair_64_vqgan_v4.ckpt"
+
+# Parameters for the training
+training:
+  # Parameters for batch building
+  batching:
+    batch_size: 16
+    num_workers: 7
+
+  # Parameters for the optimizer
+  optimizer:
+    learning_rate: 0.0001
+    weight_decay: 0.000005
+    num_warmup_steps: 5000
+    num_training_steps: 300000
+
+  # Number of observations in the sequence
+  num_observations: 16
+  # Number of frames to use as initial conditioning
+  condition_frames: 1
+  # Nuber of frames to generate
+  frames_to_generate: 15
+
+  # Parameters for loss weighting
+  loss_weights:
+    flow_matching_loss: 1.0
+
+# Parameters for the evaluation
+evaluation:
+  # Parameters for batch building
+  batching:
+    batch_size: 4
+    num_workers: 7
+
+    # Number of observations that each batch sample possesses
+    observations_count: 16
+    # Number of frames to skip between each observation
+    skip_frames: 0
+    # Total number of frames that compose an observation
+    observation_stacking: 1
+
+  # Number of observations in the sequence
+  num_observations: 16
+  # Number of frames to use as initial conditioning
+  condition_frames: 1
+  # Nuber of frames to generate
+  frames_to_generate: 15
+  # Number of steps to use in the flow integration for generation
+  steps: 100

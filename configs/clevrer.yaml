@@ -1,0 +1,91 @@
+# Experiment name
+name: "clevrer"
+
+# Dataset parameters
+data:
+  type: "clevrer"
+  data_root: "/data/cvg/aram/hdf5/ours/CLEVRER_h5"
+  input_size: 128
+  crop_size: 128
+  frames_per_sample: 16
+  skip_frames: 4
+  random_horizontal_flip: False
+  aug: True
+  albumentations: False
+
+# Parameters of the model
+model:
+  # Defines the sigma min
+  sigma: 0.0000001
+
+  # Parameters for vector field regressor
+  vector_field_regressor:
+    state_size: 4
+    state_res: [16, 16]
+    inner_dim: 768
+    depth: 4
+    mid_depth: 5
+    out_norm: "ln"
+
+  # Parameters for the vqgan
+  autoencoder:
+      type: "ours"
+      ckpt_path: "/home/ad20n980/research/loi/control-river/ae_checkpoints/clevrer.pth"
+      # Parameters of the encoder
+      encoder:
+        in_channels: 3
+        out_channels: 4
+
+      # Parameters of the vector quantizer
+      vector_quantizer:
+        num_embeddings: 8192
+        embedding_dimension: 4
+
+      # Parameters of the decoder
+      decoder:
+        in_channels: 4
+        out_channels: 3
+
+# Parameters for the training
+training:
+  # Total number of epochs to train the model for
+  num_epochs: 100
+
+  # Parameters for batch building
+  batching:
+    batch_size: 16
+    num_workers: 7
+
+  # Parameters for the optimizer
+  optimizer:
+    learning_rate: 0.0001
+    weight_decay: 0.000005
+
+    num_warmup_steps: 5000
+    num_training_steps: 300000
+
+  # Number of observations in the sequence
+  num_observations: 16
+  # Number of frames to use as initial conditioning
+  condition_frames: 2
+  # Nuber of frames to generate
+  frames_to_generate: 14
+
+  # Parameters for loss weighting
+  loss_weights:
+    flow_matching_loss: 1.0
+
+evaluation:
+  # Parameters for batch building
+  batching:
+    batch_size: 4
+    num_workers: 8
+
+  # Number of observations in the sequence
+  num_observations: 16
+  # Number of frames to use as initial conditioning
+  condition_frames: 2
+  # Nuber of frames to generate
+  frames_to_generate: 14
+  # Number of steps to use in the flow integration for generation
+  steps: 100
