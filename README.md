@@ -57,7 +57,7 @@
 For convenience, we provide an `environment.yml` file that can be used to install the required packages 
 to a `conda` environment with the following command 
 
-```conda env create -f evnironment.yml```
+```conda env create -f environment.yml```
 
 The code was tested with cuda=12.1 and python=3.9.
 
