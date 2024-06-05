@@ -61,4 +61,4 @@ if __name__ == "__main__":
             split=split,
             extension=args.extension,
             image_size=args.image_size,
-            out_dir=os.path.join(args.out_dir, 'train'))
+            out_dir=os.path.join(args.out_dir, split))
